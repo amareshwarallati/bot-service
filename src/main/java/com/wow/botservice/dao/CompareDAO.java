@@ -55,4 +55,13 @@ public class CompareDAO implements ICompareDAO {
         }
         return po;
     }
+
+    public String addPurchaseOrder(PurchaseOrder po) throws CompareException {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("poNbr", po.getPoNbr());
+        params.addValue("status", po.getStatus());
+        String sql = "INSERT INTO purchase_order Values(:poNbr, :status);";
+        int count = namedParameterJdbcTemplate.update(sql, params);
+        return ( count > 0 ? "success": "error" );
+    }
 }

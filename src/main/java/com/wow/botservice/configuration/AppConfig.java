@@ -1,6 +1,7 @@
 package com.wow.botservice.configuration;
 
 import org.hsqldb.util.DatabaseManagerSwing;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -45,6 +46,16 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 	@Bean
 	public NamedParameterJdbcTemplate getJdbcTemplate() {
 		return new NamedParameterJdbcTemplate(dataSource());
+	}
+
+	@Bean
+	public FilterRegistrationBean greetingFilterRegistrationBean() {
+		FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+		registrationBean.setName("CORS");
+		CORSFilter corsFilter = new CORSFilter();
+		registrationBean.setFilter(corsFilter);
+		registrationBean.setOrder(1);
+		return registrationBean;
 	}
 
 	/*

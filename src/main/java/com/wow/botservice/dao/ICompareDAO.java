@@ -16,4 +16,5 @@ public interface ICompareDAO {
 	public Map<String, ArrayList<ValueObject>> getData(String query, String refInstance, List<String> pKeyList, List<String> colList);
 
 	public PurchaseOrder getPurchaseOrder(PurchaseOrder po) throws CompareException;
+	public String addPurchaseOrder(PurchaseOrder po) throws CompareException;
 }

@@ -51,7 +51,13 @@ public class CompareService implements ICompareService{
 	}
 
 	@Override
-	public PurchaseOrder addPurchaseOrder(PurchaseOrder po) throws CompareException {
-		return new PurchaseOrder();
+	public String addPurchaseOrder(PurchaseOrder po) throws CompareException {
+		String returnValue = "";
+		try{
+			returnValue = this.compareDAO.addPurchaseOrder(po);
+		}catch(CompareException e){
+			throw e;
+		}
+		return returnValue;
 	}
 }

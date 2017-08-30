@@ -25,7 +25,7 @@ public class Authenticator {
 	@Autowired
     private ApplicationProperties properties;
 
-	@RequestMapping(value = "/purchaseOrder", method = RequestMethod.GET)
+	@RequestMapping(value = "rest/purchaseOrder", method = RequestMethod.GET)
 	public ResponseEntity<PurchaseOrder> getPOStatus(@RequestParam("poNbr") final String poNbr) throws CompareException {
 		PurchaseOrder po = new PurchaseOrder();
 		//po.setStatus("Closed");
@@ -34,11 +34,10 @@ public class Authenticator {
 		return new ResponseEntity<PurchaseOrder>(po, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "rest/purcharOrder", method = RequestMethod.PUT)
+	@RequestMapping(value = "rest/purchaseOrder", method = RequestMethod.POST)
 	public ResponseEntity<String> addPurchaseOrder(@RequestBody final PurchaseOrder po) throws CompareException {
-
-		PurchaseOrder order = this.compareService.addPurchaseOrder(po);
-		return new ResponseEntity<String>("Success", HttpStatus.OK);
+		String res = this.compareService.addPurchaseOrder(po);
+		return new ResponseEntity<String>(res, HttpStatus.CREATED);
 	}
 	
 	@ExceptionHandler(CompareException.class)

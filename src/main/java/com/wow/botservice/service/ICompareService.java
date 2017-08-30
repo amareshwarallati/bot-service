@@ -8,6 +8,6 @@ import com.wow.botservice.model.SearchResult;
 public interface ICompareService{
 	
 	public SearchCriteria getInitialData() throws CompareException;
-	public PurchaseOrder addPurchaseOrder(PurchaseOrder po) throws CompareException;
+	public String addPurchaseOrder(PurchaseOrder po) throws CompareException;
 	public PurchaseOrder getPurchaseOrder(PurchaseOrder po) throws CompareException;
 }
