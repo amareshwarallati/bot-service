@@ -1,0 +1,71 @@
+input:read-only {
+	background-color: blue;
+	width: 100px;
+	color: white;
+	outline-color: blue;
+	font-weight: bold;
+}
+
+.top-buffer {
+	margin-top: 5px;
+}
+
+table {
+	border-collapse: separate;
+}
+
+.borderless td,.borderless th {
+	border: none;
+}
+
+.textBackgroud {
+	background-color: #FFF2CD;
+}
+
+.multi-column {
+	-moz-column-count: 2;
+	-moz-column-gap: 20px;
+	-moz-column-fill: auto;
+	-webkit-column-count: 2;
+	-webkit-column-gap: 20px;
+	-webkit-column-fill: auto;
+	column-count: 2;
+	column-gap: 20px;
+	column-fill: auto;
+	list-style-position: inside;
+	list-style: none;
+}
+
+table {
+	border: 1px solid #000;
+}
+
+.topSpace {
+	padding-top: 5px;
+}
+
+.fontSizeSmall {
+	font-size: smaller;
+}
+
+.textBoxDisplay {
+	height: 26px;
+	width: 180px;
+}
+
+refresh {
+  content: "\21BA";
+  cursor: pointer;
+}
+
+.evenClass{
+	
+}
+
+.oddClass{
+	background-color: #cccccc;
+}
+
+.table-striped tbody tr:nth-of-type(even){
+  background-color: #cccccc;
+}

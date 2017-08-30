@@ -1,0 +1,137 @@
+<!-- html code for login template goes here -->
+<div class = "container-fluid" style="background-color:#333333;padding:10px;">
+	<div class="row">
+		<div class="col-md-1" style="height:100px; padding-top:25px;">
+			<i class="fa fa-cogs fa-3x" style="color:#D1CECE;" aria-hidden="true"></i>
+		</div>
+		
+		<div class="col-md-9">
+			<div class="row">
+				<div class="col-md-2 " style="padding:10px;">
+					<span style="color:#D1CECE;font-weight:bold;">Reference Instance: </span>
+				</div>
+				<div class="col-md-3 " style="padding:10px;">
+					<select style="border-radius:5px;" ng-model="refInstance" ng-options="ri for ri in instances">
+					</select>
+				</div>
+				<div class="col-md-2" style="padding:10px;">
+					<span style="color:#D1CECE;font-weight:bold;">Compare Instance: </span>
+				</div>
+				
+				<div class="col-md-3" style="padding:10px;">
+					<select style="border-radius:5px;" ng-model="compInstance" ng-options="ci for ci in instances">
+					</select>
+				</div>
+			</div>
+	
+	
+			<div class="row">
+				<div class="col-md-2 " style="padding:10px;">	
+					<span style="color:#D1CECE;font-weight:bold;">Table: </span>
+				</div>
+				<div class="col-md-3" style="padding:10px;">
+					<select style="border-radius:5px;" ng-model="tableName" ng-options="t for t in tables">
+					</select>
+				</div>
+				<div class="col-md-2" style="padding:10px;">
+					<span style="color:#D1CECE;font-weight:bold;">Where Clause</span>
+				</div>
+				<div class="col-md-4 " style="padding:10px;">
+					<input style="border-radius:5px;" size="40" ng-model="whereClause"></input> 
+				</div>
+			</div>
+	
+		</div>
+		
+		<!-- 
+		<div class="col-md-2" style="padding-top:10px;height:100px; padding-top:25px;">
+			<button ng-click="botservice()" style="border-radius:5px; height:40px;" type="button"><span style="color:black;font-weight:bold;">Compare Records</span></button>
+		</div>
+		 -->
+		 <div class="col-md-2">
+		 
+		 	<div class="row">
+		 		<div class="col-md-12" style="padding-bottom:10px;">
+		 			<button ng-click="compare()" style="border-radius:5px; height:50px;" type="button"><span style="color:black;font-weight:bold;">
+		 			Click To </br> Compare Instances</span></button>
+		 		</div>
+		 	</div>
+		 	
+		 	<div class="row">
+		 		<div class="col-md-12">
+		 		<!-- <label for="displayOption"> Multiple select: </label><br>  -->
+			    <select id="displayOption" ng-model="displayOption" style="border-radius:5px; height:20px;font-weight:bold;background-color:#333333;color:#cccccc;">
+			      <option value="showMissingRecords">Show MissingRecords</option>
+			      <option value="compareRecords">Compare Records</option>
+			    </select>
+			    </div>
+		 	</div>
+		 </div>
+		 
+	</div>
+</div>
+
+<div class="row" ng-if="showWaitingIcon == true" style="padding-top:30px; height:150px;">
+	<div class="col-md-5 col-sm-5 col-xs-5">
+	</div>
+	<div class="col-md-4 col-sm-4 col-xs-4 alignCenter">
+		<i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true" style="color:#333333;"></i>
+	</div>
+</div>
+
+<div ng-if="displayOption == 'showMissingRecords' ">
+	<div class="row" style="padding:10px;" >
+		<div class = "col-md-8 col-md-push-2">
+			<p style="font-weight:bold;"> Following are the missing records from {{compInstance}} instance  when compared to {{refInstance}} instance</p>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+		<table class="table-condensed table-bordered table-striped" style="table-layout: fixed;width:100%;font-size:12px;">
+			<thead>
+				<tr style="color:#D1CECE; background-color:#333333" >
+				<th ng-repeat="h in headers">
+					{{h}}
+				</th></tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat = "r in missingDataList" ng-class="$index%2">
+					<td style="word-wrap:break-word;" ng-repeat="h in headers track by $index" >
+						 {{r[$index].colValue}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+
+<div ng-if="displayOption == 'compareRecords'">
+	<div class="row" style="padding:10px;" >
+		<div class = "col-md-8 col-md-push-2">
+			<p style="font-weight:bold;"> Following is the comparison between {{compInstance}} instance  and {{refInstance}} instance</p>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+		<table class="table-condensed table-bordered table-striped" style="table-layout: fixed;width:100%;font-size:12px;">
+			<thead>
+				<tr style="color:#D1CECE; background-color:#333333">
+				<th ng-repeat="h in headers">
+					{{h}}
+				</th></tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat = "r in compareDataList" ng-class="$index%2">
+					<td style="word-wrap:break-word;" ng-repeat="h in headers track by $index" >
+						 {{r[$index].colValue}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+
