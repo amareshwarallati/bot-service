@@ -63,10 +63,16 @@ public class Authenticator {
 		ObjectNode jn = JsonNodeFactory.instance.objectNode();
 
 		ObjectNode result = JsonNodeFactory.instance.objectNode();
-		result.put("speech", "The status of the order '" + po.getPoNbr() + "' " + "is " + po.getStatus());
-		result.put("displayText", "The status of the order '" + po.getPoNbr() + "' " + "is " + po.getStatus());
+		if(po != null && po.getPoNbr() != null) {
+			result.put("speech", "The status of the order '" + po.getPoNbr() + "' " + "is " + po.getStatus());
+			result.put("displayText", "The status of the order '" + po.getPoNbr() + "' " + "is " + po.getStatus());
+		}else{
+			result.put("speech", "The  order '" + po.getPoNbr() + "' " + "is not found.");
+			result.put("displayText", "The  order '" + po.getPoNbr() + "' " + "is not found.");
+
+		}
 		result.put("data", "NA");
-		result.put("contextOut", "NA");
+		//result.put("contextOut", "NA");
 		result.put("source", "Heroku-Amar");
 		result.put("followupEvent", "NA");
 /*
