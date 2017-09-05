@@ -61,6 +61,15 @@ public class Authenticator {
 		po = this.compareService.getPurchaseOrder(po);
 
 		ObjectNode jn = JsonNodeFactory.instance.objectNode();
+
+		ObjectNode result = JsonNodeFactory.instance.objectNode();
+		result.put("speech", "The status of the order '" + po.getPoNbr() + "' " + "is " + po.getStatus());
+		result.put("displayText", "The status of the order '" + po.getPoNbr() + "' " + "is " + po.getStatus());
+		result.put("data", "NA");
+		result.put("contextOut", "NA");
+		result.put("source", "Heroku-Amar");
+		result.put("followupEvent", "NA");
+/*
 		if(po != null && po.getPoNbr() != null) {
 			jn.put("poNbr", po.getPoNbr());
 			jn.put("status", po.getStatus());
@@ -68,8 +77,8 @@ public class Authenticator {
 			jn.put("poNbr", jNode.get("result").get("parameters").get("poNbr").asText());
 			jn.put("status", "N/A");
 		}
-
-		return new ResponseEntity<String>(jn.toString(), HttpStatus.OK);
+*/
+		return new ResponseEntity<String>(result.toString(), HttpStatus.OK);
 	}
 	
 	@ExceptionHandler(CompareException.class)
