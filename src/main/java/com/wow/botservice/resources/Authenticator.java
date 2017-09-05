@@ -53,7 +53,7 @@ public class Authenticator {
 
 	// Get status of purchse order based on the order Id - For API.AI reuests.
 	@RequestMapping(value = "rest/getStatus", method = RequestMethod.POST)
-	public ResponseEntity<String> addPurchaseOrder(@RequestBody String postMsg) throws JsonParseException, IOException,CompareException {
+	public ResponseEntity<ObjectNode> addPurchaseOrder(@RequestBody String postMsg) throws JsonParseException, IOException,CompareException {
 		ObjectMapper om = new ObjectMapper();
 		JsonNode jNode = om.readTree(postMsg);
 		PurchaseOrder po = new PurchaseOrder();
@@ -78,7 +78,7 @@ public class Authenticator {
 			jn.put("status", "N/A");
 		}
 */
-		return new ResponseEntity<String>(result.toString(), HttpStatus.OK);
+		return new ResponseEntity<ObjectNode>(result, HttpStatus.OK);
 	}
 	
 	@ExceptionHandler(CompareException.class)
