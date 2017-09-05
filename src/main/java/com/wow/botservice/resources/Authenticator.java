@@ -3,6 +3,7 @@ package com.wow.botservice.resources;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeCreator;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.util.JSONPObject;
@@ -62,6 +63,7 @@ public class Authenticator {
 
 		ObjectNode jn = JsonNodeFactory.instance.objectNode();
 
+
 		ObjectNode result = JsonNodeFactory.instance.objectNode();
 		if(po != null && po.getPoNbr() != null) {
 			result.put("speech", "The status of the order '" + po.getPoNbr() + "' " + "is " + po.getStatus());
@@ -71,10 +73,10 @@ public class Authenticator {
 			result.put("displayText", "The  order '" + po.getPoNbr() + "' " + "is not found.");
 
 		}
-		result.put("data", "NA");
-		//result.put("contextOut", "NA");
+		result.put("data", JsonNodeFactory.instance.objectNode());
+		result.put("contextOut", JsonNodeFactory.instance.arrayNode());
 		result.put("source", "Heroku-Amar");
-		result.put("followupEvent", "NA");
+		//result.put("followupEvent", JsonNodeFactory.instance.textNode(""));
 /*
 		if(po != null && po.getPoNbr() != null) {
 			jn.put("poNbr", po.getPoNbr());
