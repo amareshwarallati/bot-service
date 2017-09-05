@@ -66,8 +66,8 @@ public class Authenticator {
 
 		ObjectNode result = JsonNodeFactory.instance.objectNode();
 		if(po != null && po.getPoNbr() != null) {
-			result.put("speech", "The status of the order '" + po.getPoNbr() + "' " + "is " + po.getStatus());
-			result.put("displayText", "The status of the order '" + po.getPoNbr() + "' " + "is " + po.getStatus());
+			result.put("speech", "The status of  order '" + po.getPoNbr() + "' " + "is " + po.getStatus());
+			result.put("displayText", "The status of  order '" + po.getPoNbr() + "' " + "is " + po.getStatus());
 		}else{
 			result.put("speech", "The  order '" + jNode.get("result").get("parameters").get("poNbr").asText() + "' " + "is not found.");
 			result.put("displayText", "The  order '" + jNode.get("result").get("parameters").get("poNbr").asText() + "' " + "is not found.");
